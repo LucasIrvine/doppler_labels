@@ -8,52 +8,47 @@ var width = 960,
   
   labelObj = [
     {
-      'name' : 'edit',
-      'x' : -55,
-      'click' : function(){
+      'name':'edit',
+      'x':-55,
+      'click':function(){
        console.log('you clicked edit you turkey!!');
       }
     },
     {
-      'name' : 'color',
-      'x' : -18,
-      'click' : function(){
+      'name':'color',
+      'x':-18,
+      'click':function(){
        console.log('you clicked color you turkey!!');
       }
     },
     {
-      'name' : 'arrow',
-      'x' : 18,
-      'click' : function(){
+      'name':'arrow',
+      'x':18,
+      'click':function(){
        console.log('you clicked arrow you turkey!!');
       }
     },
     {
-      'name' : 'delete',
-      'x' : 55,
-      'click' : function(){
+      'name':'delete',
+      'x':55,
+      'click':function(){
        console.log('you clicked delete you turkey!!');
       }
     }
   ];
 
-
-
-
-var svg = d3.select('.labelWrap')
-  .append('svg')
-  .attr({
-    'width' : width,
-    'height' : height
-  });
-
-
-
+var svg =
+  d3.select('.labelWrap')
+    .append('svg')
+    .attr({
+      'width':width,
+      'height':height
+    });
 
 var showOptions = function(item){
   classCheck = d3.select(item).attr('class');
 
-  var centerPointX = item.x.baseVal.value + (item.width.baseVal.value / 2),
+  var centerPointX =item.x.baseVal.value + (item.width.baseVal.value / 2),
   centerPointY = item.y.baseVal.value + (item.height.baseVal.value / 2);
 
   if(classCheck != 'labelRect optionsOpen'){
@@ -65,31 +60,20 @@ var showOptions = function(item){
       .enter()
         .append('svg:text')
         .attr({
-          'class' : 'optionText',
-          'x' : centerPointX,
-          'y' : centerPointY,
-          "text-anchor" : "middle"
+          'class':'optionText',
+          'x':centerPointX,
+          'y':centerPointY,
+          "text-anchor":"middle"
         })
-        .style({
-          'opacity' : '0',
-          /*
-          'fill' : function(d,i){
-            return optColors[i];
-          },
-          */
-          'fill' : d3.rgb('#333'),
-          'font-size' : '10px'
+        .style({'opacity':'0','fill':d3.rgb('#333'),'font-size':'10px'
         })
         .transition()
         .attr({
-          'x' : function(d,i){ return centerPointX + d.x; },
-          'y' : function(d,i){ return centerPointY - 28; }
+          'x':function(d,i){return centerPointX + d.x;},
+          'y':function(d,i){return centerPointY - 28;}
         })
-        .style({
-          'opacity' : '1',
-          'font-size' : '10px'
-        })
-        .text(function(d,i){ return d.name;});
+        .style({'opacity':'1','font-size':'10px'})
+        .text(function(d,i){return d.name;});
 
     //add icons
     svg.selectAll('.optionIcon')
@@ -97,49 +81,35 @@ var showOptions = function(item){
       .enter()
         .append('svg:image')
         .attr({
-          'xlink:href' : function(d,i){
-            return '../img/' + d.name + '.png';
-          },
-          'class' : 'optionIcon',
-          'x' : centerPointX,
-          'y' : centerPointY,
-          'width' : 0,
-          'height' : 0
+          'xlink:href':function(d,i){return '../img/' + d.name + '.png';},
+          'class':'optionIcon',
+          'x':centerPointX,
+          'y':centerPointY,
+          'width':0,
+          'height':0
         })
-        .style({
-          'opacity' : '0'
-        })
+        .style({'opacity':'0'})
         .transition()
         .attr({
-          'x' : function(d,i){ return centerPointX + d.x - 10; },
-          'y' : function(d,i){ return centerPointY - 65; },
-          'width' : 20,
-          'height' : 20
+          'x':function(d,i){return centerPointX + d.x - 10;},
+          'y':function(d,i){return centerPointY - 65;},
+          'width':20,
+          'height':20
         })
-        .style({
-          'opacity' : '1'
-        });
+        .style({'opacity':'1'});
 
-        //add bubbles
+    //add bubbles
     svg.selectAll('circle')
       .data(labelObj)
       .enter()
         .append('svg:circle')
         .attr({
-          'class' : 'labelOptCirc',
-          'r' : 1,
-          'cx' : centerPointX,
-          'cy' : centerPointY
+          'class':'labelOptCirc',
+          'r':1,
+          'cx':centerPointX,
+          'cy':centerPointY
         })
-        .style({
-          'opacity' : '0',
-          /*
-          'fill' : function(d,i){
-            return optColors[i];
-          }
-          */
-          'fill' : d3.rgb('#666')
-        })
+        .style({'opacity':'0','fill':d3.rgb('#666')})
         .on('mouseover', function(d,i){
           d3.select(this).style('stroke', d3.rgb('#666').darker(2));
         })
@@ -151,76 +121,68 @@ var showOptions = function(item){
         })
         .transition()
         .attr({
-          'r' : 15,
-          'cx' : function(d,i){ return centerPointX + d.x; },
-          'cy' : function(d,i){ return centerPointY - 55; }
+          'r':15,
+          'cx':function(d,i){return centerPointX + d.x;},
+          'cy':function(d,i){return centerPointY - 55;}
         })
-        .style('opacity', '0.5');
+        .style({'opacity':'0.5'});
 
     } else {
+      //remove circles
       svg.selectAll('.labelOptCirc')
         .transition()
           .attr({
-            'r' : 1,
-            'cx' : centerPointX,
-            'cy' : centerPointY
+            'r':1,
+            'cx':centerPointX,
+            'cy':centerPointY
           })
-          .style({
-            'opacity' : '0'
-          })
+          .style({'opacity':'0'})
           .remove();
-
+      //remove text    
       svg.selectAll('.optionText')
         .transition()
           .attr({
-            'x' : centerPointX,
-            'y' : centerPointY,
+            'x':centerPointX,
+            'y':centerPointY,
           })
-          .style({
-            'opacity' : '0',
-            'font-size' : '1px'
-          })
+          .style({'opacity':'0','font-size':'1px'})
           .remove();
-
-        //add icons
+      //remove icons
       svg.selectAll('.optionIcon')
         .transition()
           .attr({
-           'x' : centerPointX,
-            'y' : centerPointY,
-            'width' : 0,
-            'height' : 0
+           'x':centerPointX,
+            'y':centerPointY,
+            'width':0,
+            'height':0
           })
-          .style({
-            'opacity' : '0'
-          })
+          .style({'opacity':'0'})
           .remove();
-         
 
+      //remove optionsOpen class
       d3.select(item).attr('class', 'labelRect');
     }
-
 };
-
-
 
 //get label data form server
 d3.json('data/labels.json', function(labelData){
 
  //label text
-var labelText = svg.selectAll('text')
+  var labelText =
+  svg.selectAll('text')
     .data(labelData.labels)
     .enter()
       .append('svg:text')
-      .text(function(d,i){ return d.name; })
+      .text(function(d,i){return d.name;})
       .attr({
-        'class' : 'labelText',
-        'x' : function(d,i){ return d.x + 5; },
-        'y' : function(d,i){ len = this.getComputedTextLength(); console.log(len); return d.y + 20; }
+        'class':'labelText',
+        'x':function(d,i){len = this.getComputedTextLength(); return d.x + 5;},
+        'y':function(d,i){return d.y + 20;}
       })
       .style('fill', '#000');
 
-    //var bbox = labelText.node().getBBox();  then --- bbox.width
+//grab text size alternative
+//var bbox = labelText.node().getBBox();  then --- bbox.width
 
   //label rect
   svg.selectAll('rect')
@@ -228,30 +190,29 @@ var labelText = svg.selectAll('text')
     .enter()
       .append('svg:rect')
       .attr({
-        'class' : 'labelRect',
-        'width' : len + 10,
-        'height' : labelHeight,
-        'x' : function(d,i){ return d.x; },
-        'y' : function(d,i){ return d.y; },
-        'rx' : 6,
-        'ry' : 6
+        'class':'labelRect',
+        'width':len + 10,
+        'height':labelHeight,
+        'x':function(d,i){return d.x;},
+        'y':function(d,i){return d.y;},
+        'rx':6,
+        'ry':6
       })
       .style({
-        'fill' : function(d,i){
+        'fill':function(d,i){
           var rectColor = d3.rgb(d.color);
           return rectColor;
         },
-        'stroke' : function(d,i){
+        'stroke':function(d,i){
           var rectColor = d3.rgb(d.color);
           return rectColor.darker(2);
         },
-        'stroke-width' : 1
+        'stroke-width':1
       })
       .on('click', function(){
         showOptions(this);
         
       });
-
 });
 
 
