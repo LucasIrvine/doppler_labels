@@ -2,7 +2,7 @@ var width = 960,
   height = 800,
   labelWidth = 185,
   labelHeight = 28,
-  colors = ['#61c6d9', '#61d99c', '#a8d54c', '#adaf30', '#c49846', '#c46e46', '#c4464c', '#bf4280', '#bb46c4', '#976dff', '#6d85ff', '#81c2ff', '#83ba99', '#a0ad90', '#ad9090', '#9b90ad', '#88a4b5', '#0ca48a', '#bdbdbd', '#545454'],
+  colors = ['#61c6d9', '#61d99c', '#a8d54c', '#adaf30', '#c49846', '#c46e46', '#c4464c', '#bf4280', '#bb46c4', '#976dff', '#6d85ff', '#81c2ff', '#83ba99', '#a0ad90', '#ad9090' /*, '#9b90ad', '#88a4b5', '#0ca48a', '#bdbdbd', '#545454'*/],
   
   optColors = ['#83ba99', '#a0ad90', '#ad9090', '#9b90ad'],
   
@@ -68,6 +68,9 @@ var showOptions = function(item){
         .style({'opacity':'0','fill':d3.rgb('#333'),'font-size':'10px'
         })
         .transition()
+        /*.delay(function(d,i){
+          return i * 10;
+        })*/
         .attr({
           'x':function(d,i){return centerPointX + d.x;},
           'y':function(d,i){return centerPointY - 28;}
@@ -90,6 +93,9 @@ var showOptions = function(item){
         })
         .style({'opacity':'0'})
         .transition()
+        /*.delay(function(d,i){
+          return i * 10;
+        })*/
         .attr({
           'x':function(d,i){return centerPointX + d.x - 10;},
           'y':function(d,i){return centerPointY - 65;},
@@ -111,21 +117,24 @@ var showOptions = function(item){
         })
         .style({'opacity':'0','fill':d3.rgb('#666')})
         .on('mouseover', function(d,i){
-          d3.select(this).style('stroke', d3.rgb('#666').darker(2));
+          d3.select(this).style({'stroke':d3.rgb('#666').darker(2), 'opacity':0.4});
         })
          .on('mouseout', function(d,i){
-          d3.select(this).style('stroke', 'none');
+          d3.select(this).style({'stroke':'none', 'opacity':0.6});
         })
         .on('click', function(d,i){
           d.click();
         })
         .transition()
+        /*.delay(function(d,i){
+          return i * 10;
+        })*/
         .attr({
           'r':15,
           'cx':function(d,i){return centerPointX + d.x;},
           'cy':function(d,i){return centerPointY - 55;}
         })
-        .style({'opacity':'0.5'});
+        .style({'opacity':'0.6'});
 
     } else {
       //remove circles
@@ -200,13 +209,10 @@ d3.json('data/labels.json', function(labelData){
       })
       .style({
         'fill':function(d,i){
-          var rectColor = d3.rgb(d.color);
+          rectColor = colors[Math.floor(Math.random() * colors.length)];
           return rectColor;
         },
-        'stroke':function(d,i){
-          var rectColor = d3.rgb(d.color);
-          return rectColor.darker(2);
-        },
+        'stroke' : '#999',
         'stroke-width':1
       })
       .on('click', function(){

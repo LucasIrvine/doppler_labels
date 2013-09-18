@@ -1,9 +1,10 @@
 {"labels" : [
 	{
-		"name" : "Example Label",
-		"color" :"#61c6d9",
-		"x" : 200,
-		"y" : 250
+		"id": 34, 
+		"x": 200, 
+		"y": 250, 
+		"name": "Example Label Dr. Derpinstein", 
+		"isAutoLabel": true
 		
 	}
 ]}

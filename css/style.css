@@ -3,11 +3,11 @@ html, body {
    	font-weight: 300;
 	padding: 0;
 	margin: 0;
-	color: #333;
+	color: #000;
 	/*background: #fff url('../img/neutral-bg.gif') 0 -400px  repeat-x;*/
 }
 .labelRect {
-	opacity: 0.4;
+	opacity: 0.55;
 	cursor: pointer;
 }
 .labelOptCirc {
