@@ -7,9 +7,18 @@ html, body {
 	/*background: #fff url('../img/neutral-bg.gif') 0 -400px  repeat-x;*/
 }
 .labelRect {
-	opacity: 0.55;
+	opacity: 0.9;
 	cursor: pointer;
 }
+.labelText {
+	opacity: 1;
+	cursor: pointer;
+	pointer-events:none;
+	color:#333;
+}
 .labelOptCirc {
+	cursor: pointer;
+}
+.colorPick {
 	cursor: pointer;
 }

@@ -3,8 +3,30 @@
 		"id": 34, 
 		"x": 200, 
 		"y": 250, 
-		"name": "Example Label Dr. Derpinstein", 
-		"isAutoLabel": true
+		"name": "Labeler Labelstein", 
+		"isAutoLabel": true,
+		"color": "#61c6d9",
+		"length": 200
+		
+	},
+		{
+		"id": 4, 
+		"x": 200, 
+		"y": 450, 
+		"name": "The labelnator 2000", 
+		"isAutoLabel": true,
+		"color": "#976dff",
+		"length": 200
+		
+	},
+		{
+		"id": 12, 
+		"x": 400, 
+		"y": 250, 
+		"name": "Thunderlips the ultimate label", 
+		"isAutoLabel": true,
+		"color": "#9b90ad",
+		"length": 200
 		
 	}
 ]}
